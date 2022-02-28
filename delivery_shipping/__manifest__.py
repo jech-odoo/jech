@@ -3,6 +3,7 @@
 
     'name': 'Delivery_Date_Shipping ',
     'installable': True,
+    'description': """task id = 2763078 jj""",
 
     # Dependency
     'depends': ['contacts','product', 'sale_management','stock'],
