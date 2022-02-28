@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!-- inherit form view for res_partner -->
+    <record id="person_inherited1" model="ir.ui.view">
+        <field name="name">person form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="product.view_partner_property_form"/>
+        <field name="arch" type="xml">
+            <field name="property_product_pricelist" position="after">
+                <field name="day_to_delivrer"/>
+            </field>
+        </field>
+    </record>
+</odoo>
