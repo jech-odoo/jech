@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+        <record id="project_task_kanban_view_inherited" model="ir.ui.view">
+            <field name="name">project.task.kanban.view.inherited</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after" style="font-size:18px">
+                    <field name="parent_id"/>
+                </xpath>
+                <xpath expr="//strong[hasclass('o_kanban_record_title')]" position="before">
+                    <div t-if="record.partner_id" style="font-size:17px">
+                        <field name="parent_id"/>:
+                    </div>
+                         <div t-if="record.parent_id" class="fa fa-plus pl-3" style="font-size:16px" title="Sub-Task" />
+                </xpath>
+
+            </field>
+        </record>
+
+</odoo>

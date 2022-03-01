@@ -12,4 +12,3 @@ class  InvoiceOrderrLine(models.Model):
         if self.product_id and self.partner_id:
             self.product_uom_id = self.partner_id.product_uom_detail_ids.filtered(lambda x : x.product_id.id == self.product_id.id).uom_id.id
         return res
-

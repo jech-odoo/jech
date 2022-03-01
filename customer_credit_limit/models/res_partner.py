@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import fields, models
+from odoo import models
 
 
 class ResPartner(models.Model):
@@ -9,5 +9,6 @@ class ResPartner(models.Model):
     #  fields Declarations
     # ---------------------------
 
-    day_to_delivrer = fields.Integer(string="Days to Deliver")
+    # credit_limit = fields.Integer(string="Credit Limit")
+    # total_receviable= fields.Integer(string="Total Receivable")
     
