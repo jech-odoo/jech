@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_form_inherit_credit_customer_limit" model="ir.ui.view">
+        <field name="name">customer.credit.limit.view.from</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="credit_limit"/>
+                <field name="credit"/> 
+            </xpath>
+        </field>
+    </record>
+</odoo>
