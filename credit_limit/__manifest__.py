@@ -3,7 +3,7 @@
 {
     # imfromation
 
-    'name': 'credit_limit',
+    'name': 'Credit Limit',
     'installable': True,
   
     'description': """task id = 2763082""",
