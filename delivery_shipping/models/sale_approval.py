@@ -1,4 +1,6 @@
-from odoo import models, fields, api
+# -- coding: utf-8 --
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+from odoo import models, fields
 
 
 class SaleApproval(models.Model):
@@ -9,8 +11,3 @@ class SaleApproval(models.Model):
     # ------------------------
 
     zero_stock_approval = fields.Boolean(string='Approval')
-
-
-def _approval(self):
-    if self.env.uid == self.parent_id.user_id.id:
-        self.zero_stock_approval = True
