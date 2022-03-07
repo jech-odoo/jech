@@ -9,7 +9,7 @@
     # Dependency
     'depends': ['contacts', 'sale_management', 'delivery_barcode', 'stock','base'],
     'data': [
-        'views/approval_order.xml',
+        'views/sale_order.xml',
     ],
 
 }
