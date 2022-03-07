@@ -10,7 +10,7 @@
 
 
     # Dependency
-    'depends': ['contacts','delivery_barcode','base','sale','product'],
+    'depends': ['contacts','base','sale','product'],
     'data': [
         'views/res_partner_view.xml',
         'security/ir.model.access.csv',
