@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+   <template id="invoice_order_inherit_template" inherit_id="account.report_invoice_document">
+
+      <xpath expr="//table[hasclass('table','table-sm','o_main_table')]/thead/tr/th[@name='th_price_unit']" position="after">
+                <th>2nd Disc.%</th>               
+      </xpath>
+      <xpath expr="//span[@id='line_tax_ids']" position="after">
+        <td><span t-field="line.secound_discount"/></td>
+      </xpath> 
+   </template>
+
+</odoo>
