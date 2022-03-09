@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="view_order_form_inherited_delivery_address" model="ir.ui.view">
+        <field name="name">view.order.form.inherited.delivery.address</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="re_seller_id"/>
+                <field name="commission_amount"/>
+            </xpath>
+            <xpath expr="//field[@name='commission_amount']" position="attributes">
+                <attribute name="attrs">{'invisible': [('re_seller_id' ,'=',False)]}</attribute>
+            </xpath> 
+        </field>
+    </record>
+
+</odoo>
