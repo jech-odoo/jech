@@ -17,3 +17,4 @@ class SaleOrderLine(models.Model):
                         if line.product_id == record.product_id:
                             line.product_uom = record.uom_id
         return res
+        
