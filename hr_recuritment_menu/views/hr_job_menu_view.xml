@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+  <data>
+    <!-- hr_recruitment module submenu only view a admin -->
+    <menuitem name="All Applications" parent="hr_recruitment.menu_crm_case_categ0_act_job" groups="hr_recruitment.group_hr_recruitment_manager" id="hr_recruitment.menu_crm_case_categ_all_app" action="hr_recruitment.crm_case_categ0_act_job" sequence="2"/>
+  </data>
+</odoo>
