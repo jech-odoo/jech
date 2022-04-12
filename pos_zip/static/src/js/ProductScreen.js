@@ -1,8 +1,6 @@
 odoo.define('pos_zip.ProductScreen', function(require) {
     'use strict';
 
-console.log("****************************");
-// var point = require('point_of_sale.ProductScreen');
 
 const ProductScreen = require('point_of_sale.ProductScreen');
 const Registries = require('point_of_sale.Registries');
@@ -29,7 +27,7 @@ const PosSaleProductScreen = (ProductScreen) =>
                 body: this.env._t('This click is successfully done.'),
                 
             });
-            console.log("**************************************",confirmed, payload)
+      
             if (confirmed) {
                 console.log(payload, 'payload')
                 currentClient.zip = await this.rpc({
