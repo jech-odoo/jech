@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <template id="point_of_sale_payment" inherit_id="point_of_sale.template">
+                <xpath expr="." position="inside">
+                    <script type="text/javascript" src="/point_of_sale_payment/static/src/js/ProductScreen.js"></script>
+                </xpath>
+            </field>
+        </template>
+    </data>
+</odoo>    
+   

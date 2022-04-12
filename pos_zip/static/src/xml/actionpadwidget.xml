@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="point_zip" inherit_id="point_of_sale.template">
+                <xpath expr="." position="inside">
+                    <script type="text/javascript" src="/pos_zip/static/src/js/ProductScreen.js"></script>
+                </xpath>
+        </template>
+    </data>
+</odoo>    
+   

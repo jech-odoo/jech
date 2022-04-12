@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sale_report_inherit_customer_report" inherit_id="sale.report_saleorder_document">
+        <!-- First page -->
+        <xpath expr="//div[@class='clearfix']" position="before">
+
+            <div class="offset-8">
+                <br/>
+                <strong class='text-right'>Thank You</strong>
+                <br/>
+                <strong class='text-right'> Yours Faithfully</strong>
+                <br/>
+                <!-- <strong > Salesperson Name</strong> -->
+                <strong class='text-right'></strong>
+                <p class="m-0" t-field="doc.user_id"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@class='oe_structure']" position="after">
+
+
+            <div class="oe_structure-8">
+                <strong class='text-left'>Partner Address</strong>
+                <p class="m-0" t-field="doc.partner_invoice_id"/>
+                <br/>
+                <!-- <p class="m-0" t-field="res.partner.phone"/><br/> -->
+                <!-- <strong class='text-left'></strong><br/> -->
+                <!-- <strong > Salesperson Name</strong> -->
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='informations']/div[5]" position="inside">
+
+            <div t-field="doc.user_id" t-options='{"widget": "contact", "fields": ["email","phone"], "no_marker": True}' />
+
+            <div class="col-auto col-3 mw-100 mb-2">
+                <strong>enquires</strong>
+                <p t-field="doc.enquiry"/>
+                <strong >marks</strong>
+                <p t-field="doc.mark"/>
+            </div>
+        </xpath>
+
+        <!-- address view -->
+        <xpath expr="//div[hasclass('page')]" position="before">
+
+            <header>
+                <t t-set="address">
+                    <div t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    <p t-if="doc.partner_id.vat">
+                        <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>
+                        <span t-field="doc.partner_id.vat"/>
+                    </p>
+                </t>
+            </header>
+        </xpath>
+
+        <!-- gst no. view -->
+        <xpath expr="//div[hasclass('page')]" position="before">
+            <p style="page-break-before:always;"></p>
+
+            <!-- <strong t-if="doc.partner_shipping_id != doc.partner_invoice_id">Invoicing Address:</strong> -->
+            <p t-if="doc.partner_id.vat">
+                <!-- <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/> -->
+:                <span t-field="doc.partner_id.vat"/>
+            </p>
+        </xpath>
+
+
+
+        <!-- secound page reports -->
+        <xpath expr="//table[hasclass('table','table-sm','o_main_table')]" position="after">
+            <!-- <p style="page-break-before:always;"></p> -->
+            <thead>
+                <tr>
+                    <th name="th_product_id" class="text-left">product Name</th>
+                </tr>
+            </thead>
+
+
+            <!-- <t t-set="address">
+                <div t-field="doc.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                <p t-if="doc.partner_id.vat">
+                    <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>
+                    <span t-field="doc.partner_id.vat"/>
+                </p>
+            </t> -->
+
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_report" inherit_id="web.external_layout_striped">
+
+        <!-- header address GST no.view -->
+        <xpath expr="//div[hasclass('o_background_header')]" position="inside">
+                <p t-if="doc.partner_id.vat">
+                    <t t-esc="doc.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>
+                    <span t-field="doc.partner_id.vat"/>
+                </p>
+        </xpath>
+        
+    </template>
+
+     
+</odoo>    

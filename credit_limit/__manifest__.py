@@ -4,14 +4,22 @@
     # imfromation
 
     'name': 'Credit Limit',
-    'installable': True,
+   
   
-    'description': """task id = 2763082""",
+    'description': """
+      task id = 2763082
+        This module is to create credit_limit and total_receviable amount for customer.
+    """,
 
+    'author': 'Odoo Ps',
+    'version': '15.0',
 
     # Dependency
     'depends': ['base','contacts','sale'],
+    
      'data': [
         'views/res_partner_view.xml',
     ],
+
+   'installable': True,
 }

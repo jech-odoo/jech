@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="view_order_form_inherited_sale_order_create" model="ir.ui.view">
+        <field name="name">view.order.form.inherited.sale.order.create</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+          
+            <!-- move delivery date -->
+            <field name="date_order" position="after">
+                <field name="commitment_date" position="move"/>
+            </field>
+           
+
+            <!-- replace field name -->
+            <xpath expr="//field[@name='origin']" position="attributes">
+                <attribute name="string">Document Reference</attribute>
+
+            </xpath>
+
+            <!-- read mode boolean fields -->
+            <xpath expr="//field[@name='require_signature']" position="attributes">
+                <attribute name="readonly">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='require_payment']" position="attributes">
+                <attribute name="readonly">True</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

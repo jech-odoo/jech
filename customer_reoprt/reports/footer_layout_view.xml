@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="external_layout_footer_inherit" inherit_id="web.external_layout_standard">
+
+        <xpath expr="//div[@class='o_footer_copyrightr']" position="replace">
+
+            <div class="o_footer_copyright">
+
+                <span>Test</span>
+
+            </div>
+
+        </xpath>
+
+    </template>
+
+
+</odoo>
+
+
+
+
+
+
+
+
