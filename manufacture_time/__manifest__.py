@@ -2,15 +2,27 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 {
     # imfromation
-    'name': 'Manufacturing',
-    'installable': True,
 
-    # 'description': """task id = 2763083""",
+    'name': 'Manufacturing',
+   
+
+    'description': """
+       this module to create a start,end and done in action menu. 
+    """,
+    'author': 'Odoo Ps',
+    'version': '15.0',
 
     # Dependency
-    'depends': ['base','mrp'],
+     'depends': ['base','mrp'],
+
     'data': [
-        'views/mrp_workorder_view.xml',
+         'views/mrp_workorder_view.xml',
+        
     ],
 
+     'installable': True,
+     
+
 }
+
+

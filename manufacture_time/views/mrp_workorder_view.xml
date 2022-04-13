@@ -2,7 +2,6 @@
 
 <odoo>
 
-
   <!-- start action..... -->
 	<record model="ir.actions.server" id="start_action">
 		<field name="name">Start</field>
@@ -15,8 +14,6 @@
 				record.button_start()
 		</field>
     </record>	
-
-
 
 	<!-- stop action..... -->
 	<record model="ir.actions.server" id="stop_action">
