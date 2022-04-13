@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <record id="student_data" model="ir.ui.view">
+        <field name="name">Student Master</field>
+        <field name="model">student.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student"/>
+                <field name="city"/>
+                <field name="email"/>
+                <field name="date_availability"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="book_data" model="ir.ui.view">
+        <field name="name">Book Master</field>
+        <field name="model">book.master</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="publisher"/>
+                <!-- <field name="name"/> -->
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="author_data" model="ir.ui.view">
+        <field name="name">author Master</field>
+        <field name="model">author.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="author_book"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="student_property_form" model="ir.ui.view">
+        <field name="name">Student Master</field>
+        <field name="model">student.master</field>
+        <field name="arch" type="xml">
+
+            <form>
+
+                <sheet>
+                    <group>
+                        <field name="student"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="r_no"/>
+                            <field name="city"/>
+                        </group>
+                        <group>
+                            <field name="image" widget="image" class="oe_avatar"/>
+                        </group>
+                        <group>
+
+                            <field name="date_availability"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="mobile"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Book Info">
+                            <group>
+                                <field name="description"/>
+                                <!-- <field name='book_id'/> -->
+                            </group>
+                        </page>
+
+                        <page name="Book" string="Books">
+                            <group>
+                                <field name="book_line_ids">
+                                    <tree editable='bottom'>
+                                        <field name='book_id' options="{'no_create':True}"/>
+                                        <!-- <field name="name"/> -->
+                                        <field name="price"/>
+                                        <field name="publisher"/>
+                                        <field name="author_id"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo> 

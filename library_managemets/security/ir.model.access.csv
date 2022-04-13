@@ -1,0 +1,4 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_student_properties,access_student_properties,model_student_master,base.group_user,1,1,1,1
+access_book_properties,access_book_properties,model_book_master,base.group_user,1,1,1,1
+access_author_properties,access_author_properties,model_author_master,base.group_user,1,1,1,1
