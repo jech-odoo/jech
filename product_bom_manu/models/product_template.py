@@ -7,4 +7,4 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     bom_id = fields.Many2one('mrp.bom')
-    # bom_temp_ids=fields.One2many('mrp.bom','product_id')
+  
