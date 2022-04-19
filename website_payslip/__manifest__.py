@@ -15,8 +15,7 @@
 
     'data': [
         'views/portal_website_view.xml',
-        # 'report/payslip_report.xml',
-        # 'views/template.xml',
+       
         
     ],
 

@@ -15,6 +15,4 @@ class Payslip(models.Model):
             record.access_url = "/my/payslip/%s" % (record.id)
 
 
-    # def _compute_type_name(self):
-    #     for record in self:
-    #         record.type_name = _('Payslip') if record.state in ('draft', 'sent', 'cancel') else _('Pay Slip')
+   
