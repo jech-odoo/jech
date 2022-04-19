@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<odoo>
+    <template id="portal_my_home_sale_1" name="Payslip" customize_show="True" inherit_id="portal.portal_my_home">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Payslip</t>
+                <!-- <a t-if="payslip" t-attf-href="/my/payslip?{{ keep_query() }}">Payslip*</a> -->
+                <t t-set="url" t-value="'/my/payslip'"/>
+                <t t-set="placeholder_count" t-value="'payslip_count'"/>
+            </t>
+
+        </xpath>
+    </template>
+
+    <!-- page name -->
+    <template id="portal_my_home_sale_2" name="Payslip : employment payslip menu entries" inherit_id="portal.portal_breadcrumbs" priority="25">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'slip'" t-attf-class="breadcrumb-item #{'active ' if not hr_payslip else ''}">
+                <a t-if="hr_payslip" t-attf-href="/my/payslip">Payslip</a>
+                <t t-else="">Payslip</t>
+            </li>
+            <li t-if=" page_name == 'payslip'" t-attf-class="breadcrumb-item #{'active ' if payslip else ''}">
+                <a t-if="payslip" t-attf-href="/my/payslip?{{ keep_query() }}">Payslip</a>
+                <t t-else="">Payslips</t>
+            </li>
+            <li t-if="payslip and page_name == 'payslip'" class="breadcrumb-item active">
+                <a t-foreach="payslip" t-as="payslip"/>
+                <li>
+                    <t t-esc="payslip.name"/>
+                </li>
+            </li>
+        </xpath>
+    </template>
+
+
+    <!-- payslip order -->
+    <template id="portal_my_payslips" name="My Playslips">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Playslips</t>
+            </t>
+            <t t-if="not payslip">
+                <p>There are currently no quotations for your account.</p>
+            </t>
+            <t t-if="payslip" t-call="portal.portal_table">
+                <thead>
+                    <tr class="active">
+                        <th>
+                            <span class='d-none d-md-inline'>payslip Order #</span>
+                            <span class='d-block d-md-none'>Ref.</span>
+                        </th>
+                        <!-- <th>Quotation #</th> -->
+                        <th class="text-right">Reference</th>
+                        <th class="text-right"> Employee</th>
+
+                        <th class="text-right">Basic Wdge</th>
+                    </tr>
+                </thead>
+
+
+                <t t-foreach="payslip" t-as="p">
+                    <tr>
+                        <!-- <t t-attf-action="/my/payslip/p.id/p.get_portal_url()"></t> -->
+                        <!-- <td>
+                            <a t-att-href="p.get_portal_url()">
+                                <t t-esc="p.number"/>
+                            </a>
+                        </td> -->
+                        <td>
+                            <a t-att-href="'/my/payslip/%s'%p.id">
+                                <t t-esc="p.number"/>
+                            </a>
+                        </td>
+
+                        <td class="text-right">
+                            <span t-field="p.name"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="p.employee_id.name"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="p.basic_wage"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-if="p.state == 'cancel'" class="badge badge-pill badge-secondary">
+                                <i class="fa fa-fw fa-remove"/>
+                                Cancelled</span>
+                        </td>
+
+                    </tr>
+                </t>
+            </t>
+        </t>
+    </template>
+
+
+
+    <!-- report submenu -->
+    <template id="payslip_portal_template" name="payslip Order Portal Template" inherit_id="portal.portal_sidebar" primary="True">
+        <xpath expr="//div[hasclass('o_portal_sidebar')]" position="inside">
+
+            <t t-set="o_portal_fullwidth_alert">
+                <t t-call="portal.portal_back_in_edit_mode">
+                    <t t-set="backend_url" t-value="'/web#model=%s&amp;id=%s&amp;view_type=form' % (payslip._name, payslip.id)"/>
+                </t>
+            </t>
+
+            <div class="row mt16 o_portal_sale_sidebar">
+                <!-- Sidebar -->
+                <t t-call="portal.portal_record_sidebar">
+                    <t t-set="classes" t-value="'col-lg-auto d-print-none'"/>
+                    <t t-set="title">
+                        <h2 class="mb-0">
+                            <b t-field="payslip.number" data-id="payslip_name"/>
+                        </h2>
+                    </t>
+                    <t t-set="entries">
+                        <ul class="list-group list-group-flush flex-wrap flex-row flex-lg-column">
+                            <li class="list-group-item flex-grow-1" t-if="payslip.date_from and payslip.date_to">
+                                <strong>Period:</strong>
+                                <!-- <span t-field="payslip.date_from" t-options="{"widget": "date"}"/> -->
+                                 to
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   <!-- <span t-field="payslip.date_to" t-options="{"widget": "date"}"/> -->
+                            </li>
+                            <li class="list-group-item flex-grow-1" t-if="payslip.state">
+                                <strong>Status:</strong>
+                                <span t-field="payslip.state"/>
+                            </li>
+                            <li class="list-group-item flex-grow-1">
+                                <div class="o_download_pdf btn-toolbar flex-sm-nowrap">
+                                    <div class="btn-group flex-grow-1 mr-1 mb-1">
+                                        <a class="btn btn-secondary btn-block o_download_btn" t-att-href="payslip.get_portal_url(report_type='pdf', download=True)" title="Download">
+                                            <i class="fa fa-download"/>
+                                        Download
+                                        </a>
+                                    </div>
+                                    <div class="btn-group flex-grow-1 mb-1">
+                                        <a class="btn btn-secondary btn-block o_print_btn o_portal_invoice_print" t-att-href="payslip.get_portal_url(report_type='pdf')" id="print_invoice_report" title="Print" target="_blank">
+                                            <i class="fa fa-print" />
+                                                Print
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </t>
+                </t>
+                <!-- base report print view  -->
+                <div class="col-12 col-lg">
+                    <div class="o_portal_html_view shadow p-3">
+                        <t t-call="hr_payroll.report_payslip"/>
+                    </div>
+                </div>
+            </div>
+
+        </xpath>
+    </template>
+
+</odoo>
+     
