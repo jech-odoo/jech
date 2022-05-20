@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_create_project_template" model="ir.ui.view">
+        <field name="name">view.project.template.wizard</field>
+        <field name="model">project.template.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Project">
+                <group>
+                    <field name="name" class="o_project_name oe_inline"
+                            string="Project Name" placeholder="e.g. Office Party" required="1"/>
+                    <field name="project_id" class="o_project_name oe_inline" options="{'no_open': 1, 'no_create': 1}" />
+                    <field name="project_manager_id" class="o_project_name oe_inline"/>
+                    <field name="user_id" invisible="1"/>
+                    <field name="allow_forecast" attrs="{'readonly': [('project_id', '!=', False)]}"/>
+                    <field name="allow_timesheets" attrs="{'readonly': [('project_id', '!=', False)]}"/>
+                    <field name="allow_billable" attrs="{'readonly': [('project_id', '!=', False)]}"/>
+                </group>
+                <footer>
+                    <button string="Create" name="action_create_project_template" type="object" class="btn-primary"/>
+                    <button string="Discard" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

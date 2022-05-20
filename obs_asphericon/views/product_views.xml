@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <record id="product_template_form_view_obs_analytic" model="ir.ui.view">
+            <field name="name">product.template.asphericon</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="account.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='categ_id']" position="before">
+                    <field name="analytic_id" groups="analytic.group_analytic_accounting"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button string="Project Overview" class="oe_stat_button" type="object" name="action_open_projects"
+                        icon="fa-puzzle-piece" attrs="{'invisible': [('project_count', '=', 0) ]}">
+                        <field name="project_count" invisible="1" />
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='taxes_id']" position="before">
+                    <field name="ignore_sales_price" readonly="1"/>
+                </xpath>
+                <!-- <xpath expr="//div[@name='pricing']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ignore_sales_price', '=', True)]}</attribute>
+                </xpath> -->
+            </field>
+        </record>
+        <record id="product_template_form_view_obs" model="ir.ui.view">
+            <field name="name">product.template.asphericon</field>
+            <field name="model">product.template</field>
+            <field name="priority" eval="100" />
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True, 'no_quick_create': True}" placeholder="Tags..."/>
+                    <field name="is_asph_service_product" attrs="{'invisible': [('type', '!=', 'consu') ]}"/>
+                </xpath>
+                <!-- <xpath expr="//div[@name='pricing']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ignore_sales_price', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//label[@for='list_price']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ignore_sales_price', '=', True)]}</attribute>
+                </xpath> -->
+            </field>
+        </record>
+        <record id="product_normal_form_view_asph" model="ir.ui.view">
+            <field name="name">product.product.asph</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True, 'no_quick_create': True}" placeholder="Tags..."/>
+                    <field name="is_asph_service_product" attrs="{'invisible': [('type', '!=', 'consu') ]}"/>
+                </xpath>
+                <!-- <xpath expr="//label[@for='lst_price']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ignore_sales_price', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='lst_price']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('ignore_sales_price', '=', True)]}</attribute>
+                </xpath> -->
+            </field>
+        </record>
+        <record id="view_product_supplier_inherit_purchase_pricelist" model="ir.ui.view">
+            <field name="name">view.product.supplier.pricelists.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='purchase']/group[1]" position="before">
+                    <group>
+                       <field name="ignore_vendor_pricelists" />
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

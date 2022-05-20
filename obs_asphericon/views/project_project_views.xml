@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="project_template_button_view" model="ir.ui.view">
+            <field name="name">project.project.template.inherited.kanban</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.view_project_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban" position="attributes">
+                    <attribute name="js_class">project_template_kanban</attribute>
+                </xpath>
+                <!-- <xpath expr="//a[hasclass('o_kanban_manage_toggle_button')]"
+                       position="attributes">
+                    <attribute name="groups">project.group_project_user</attribute>
+                </xpath>
+                <xpath expr="//div[hasclass('o_kanban_card_manage_pane')]"
+                       position="attributes">
+                    <attribute name="groups">project.group_project_user</attribute>
+                </xpath>
+                <xpath expr="//div[hasclass('o_kanban_card_manage_section')]"
+                       position="attributes">
+                    <attribute name="groups">project.group_project_manager</attribute>
+                </xpath> -->
+            </field>
+        </record>
+    </data>
+</odoo>

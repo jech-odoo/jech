@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="asph_view_account_invoice_report_graph" model="ir.ui.view">
+        <field name="name">asph.account.invoice.report.inherit</field>
+        <field name="model">account.invoice.report</field>
+        <field name="inherit_id" ref="account.view_account_invoice_report_graph"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="commission_percenatge" type="measure" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

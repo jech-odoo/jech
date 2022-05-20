@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="ProjectTemplateButton.template_button">
+        <button type="button" class="btn btn-primary o_button_create_template">
+            Create
+        </button>
+    </t>
+    <t t-extend="KanbanView.buttons" t-name="ProjectTemplateKanbanView.buttons">
+        <t t-jquery="button" t-operation="replace">
+            <t t-call="ProjectTemplateButton.template_button"/>
+        </t>
+    </t>
+</templates>

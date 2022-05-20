@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="track_po_line_delivery_date">
+        <div>
+            <strong>The delivery date has been updated.</strong>
+            <ul>
+                <li><t t-esc="line.product_id.display_name"/>:</li>
+                <t t-esc="line.date_planned" /> -&gt; <t t-esc="date_planned"/><br/>
+            </ul>
+        </div>
+    </template>
+</odoo>

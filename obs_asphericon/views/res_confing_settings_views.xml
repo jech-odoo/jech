@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="res_config_settings_view_inherit_obs" model="ir.ui.view">
+		<field name="name">res.config.settings.obs.form.inherited</field>
+		<field name="model">res.config.settings</field>
+		<field name="inherit_id" ref="account.res_config_settings_view_form"/>
+		<field name="arch" type="xml">
+			<xpath expr="//div[@id='use_invoice_terms']//div[hasclass('content-group')]" position="replace">
+                <div style="width:250%" attrs="{'invisible': [('use_invoice_terms','=',False)]}">
+                    <field name="invoice_terms"/>
+                </div>
+			</xpath>
+		</field>
+	</record>
+</odoo>

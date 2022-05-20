@@ -1,0 +1,48 @@
+<odoo>
+    <data>
+        <record id="view_partner_form_asphericon" model="ir.ui.view">
+            <field name="name">res.partner.view.form.asphericon.crm</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_ids']" position="before">
+                    <field name="fax" />
+                </xpath>
+                <xpath expr="//field[@name='function']" position="after">
+                    <field name="department" attrs="{'invisible': [('is_company','=', True)]}"/>
+                </xpath>
+                <!-- added fields in Contact Addresses page in contact form-->
+                <xpath expr="//page[@name='contact_addresses']/field[@name='child_ids']/form/sheet/group/group/field[@name='email']" position="before">
+                    <field name="fax" />
+                    <field name="department" attrs="{'invisible': [('type','!=', 'contact')]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_partner_tree_asphericon" model="ir.ui.view">
+            <field name="name">res.partner.view.tree.asphericon</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='phone']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_partner_property_form_obs" model="ir.ui.view">
+            <field name="name">res.partner.view.form.asphericon.obs</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account_check_printing.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='property_payment_method_id']" position="after">
+                    <field name="rating" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

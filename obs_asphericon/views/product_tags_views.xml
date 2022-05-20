@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_tags_tree" model="ir.ui.view">
+        <field name="name">product.tags.tree</field>
+        <field name="model">product.tags</field>
+        <field name="arch" type="xml">
+            <tree string="Product Tags" editable="top">
+                <field name="name" required="1"/>
+                <field name="color" required="1" widget="color_picker"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_product_tags" model="ir.actions.act_window">
+        <field name="name">Product Tags</field>
+        <field name="res_model">product.tags</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Create new product tags
+          </p>
+        </field>
+    </record>
+    <menuitem
+            id="product_tags_menu_root"
+            name="Product Tags"
+            action="obs_asphericon.action_product_tags"
+            parent="sale.prod_config_main"/>
+</odoo>

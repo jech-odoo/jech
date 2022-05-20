@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="asph_view_order_product_graph" model="ir.ui.view">
+        <field name="name">asphsale.report.inherit</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.view_order_product_graph"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="commission_percenatge" type="measure" />
+                <field name="saleable_quantities" type="measure" />
+                <field name="reserved_quantities" type="measure" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

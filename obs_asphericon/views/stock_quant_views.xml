@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_stock_quant_tree_editable_inherit_obs" model="ir.ui.view">
+        <field name="name">view.stock.quant.tree.obs.editable.inherit</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='inventory_quantity']" position="attributes">
+                <attribute name="string">On Hand</attribute>
+            </xpath>
+            <xpath expr="//field[@name='available_quantity']" position="attributes">
+                <attribute name="string">Available</attribute>
+            </xpath>
+            <xpath expr="//field[@name='available_quantity']" position="after">
+                <field name="saleable_quantities" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

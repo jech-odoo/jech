@@ -1,0 +1,23 @@
+<odoo>
+    <data>
+        <record id="view_vendor_rating_tree" model="ir.ui.view">
+            <field name="name">vendor.rating.tree</field>
+            <field name="model">vendor.rating</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Rating" editable="bottom">
+                    <field name="name" required="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="action_view_vendor_rating_tree" model="ir.actions.act_window">
+            <field name="name">Vendor Rating</field>
+            <field name="res_model">vendor.rating</field>
+            <field name="view_id" ref="view_vendor_rating_tree"/>
+        </record>
+        <menuitem
+            id="menu_vendor_rating"
+            name="Vendor Ratings"
+            action="action_view_vendor_rating_tree"
+            parent="purchase.menu_purchase_config"/>
+    </data>
+</odoo>

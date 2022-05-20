@@ -1,0 +1,133 @@
+<odoo>
+    <data>
+        <record id="view_order_form_obs" model="ir.ui.view">
+            <field name="name">sale.order.form.obs</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="reseller_id"/>
+                    <field name="commission_percentage" attrs="{'invisible': [('reseller_id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='client_order_ref']" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <field name="client_order_ref" />
+                </xpath>
+                <xpath expr="//field[@name='picking_policy']" position="after">
+                    <label for="shipping_info_id" />
+                    <div class="o_row">
+                        <field name="shipping_info_id" options='{"no_open": True, "no_create": True}' />
+                        <field name="number" nolabel="1"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='note']" position="replace">
+                </xpath>
+                <xpath expr="//group[@name='sale_total']" position="after">
+                    <field name="note"/>
+                </xpath>
+                <xpath expr="//field[@name='analytic_account_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='analytic_account_id']" position="after">
+                    <label for="asph_project_ids"/>
+                    <div class="o_row">
+                        <field name="asph_project_ids" widget="many2many_tags"/>
+                        <button class="btn-secondary" string="Create" type="object" name="action_open_create_project" attrs="{'invisible': ['|', ('asph_project_ids', '!=', []) ,('state', '!=', 'draft')]}" groups="project.group_project_manager"/>
+                    </div>
+                </xpath>
+                <xpath expr="//page[@name='order_lines']/field/tree/field[@name='name']" position="after">
+                    <field name="account_analytic_id" context="{'default_partner_id':parent.partner_id}" groups="analytic.group_analytic_accounting" domain="['|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="sale_order_form_sale_timesheet_inherit_obs_asphericon" model="ir.ui.view">
+            <field name="name">sale.order.form.sale.timesheet.inherit.obs.asphericon</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_timesheet.view_order_form_inherit_sale_timesheet"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_project_ids']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('state', 'in', ['draft', 'sent']), ('project_ids', '=', []), ('asph_project_ids', '=', [])]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        <record id="sale_order_form_sale_project_inherit_obs_asphericon" model="ir.ui.view">
+            <field name="name">sale.order.form.sale.project.inherit.obs.asphericon</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_project.view_order_form_inherit_sale_project"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='project_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_quotation_so_lines">
+            <field name="name">Quotation SO Lines</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">tree,pivot</field>
+        </record>
+
+        <record id="view_sale_order_line_pivot" model="ir.ui.view">
+            <field name="name">pivot</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Pivot View">
+                    <field name="name" type="row"/>
+                    <field name="saleable_quantities" string="Saleable Quantity" />
+                    <field name="reserved_quantities" string="Reserved Quantity" />
+                    <field name="shipping_info_id" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_order_line_tree_inherit_obs" model="ir.ui.view">
+            <field name="name">sale.order.line.tree.inherit.asph</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_tree"/>
+            <field name="priority">99</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='qty_delivered']" position="attributes">
+                    <attribute name="string">Delivered</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_invoiced']" position="attributes">
+                    <attribute name="string">Invoiced</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_to_invoice']" position="attributes">
+                    <attribute name="string">To Invoice</attribute>
+                </xpath>
+                <xpath expr="//field[@name='qty_delivered']" position="before">
+                    <field name="saleable_quantities" />
+                    <field name="reserved_quantities" />
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_order_view_inherit_obs_saleable">
+            <field name="name">sale.order.view.inherit.saleable</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                    <field name="saleable_quantities"/>
+                    <field name="reserved_quantities" attrs="{'column_invisible': [('parent.state', 'not in', ['sale', 'done'])]}" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+
+        <menuitem id="menu_quotation_so_lines"
+            name="Quotation and SO Lines"
+            parent="sale.sale_order_menu"
+            action="action_quotation_so_lines"
+            sequence="3"/>
+
+        <menuitem id="sale.report_sales_team"
+            name="Sales Teams"
+            parent="sale.sale_order_menu"
+            groups="sales_team.group_sale_manager"
+            action="sales_team.crm_team_salesteams_act"
+            sequence="4"/>
+
+    </data>
+</odoo>
