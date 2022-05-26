@@ -2,8 +2,8 @@
 <odoo>
 
     <!-- inherit form view for res_partner -->
-    <record id="view_partner_property_form_inherited_delivery_shipping" model="ir.ui.view">
-        <field name="name">view.partner.property.form.inherited.delivery.shipping</field>
+    <record id="person_inherited1" model="ir.ui.view">
+        <field name="name">person form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="product.view_partner_property_form"/>
         <field name="arch" type="xml">
