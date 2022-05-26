@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="open_rfq_layout" model="ir.ui.view">
+        <field name="name">product.temp.wizard.view</field>
+        <field name="model">product.temp</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Create RFQ">
+                <group>
+                    <field name="product_quantity"/>
+                    <field name="product_uom_id"/>
+                    <field name="date_planned"/>
+                </group>
+                <footer>
+                    <button name="create_rfq" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Discard" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_open_rfq_layout" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="res_model">product.temp</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>
+       

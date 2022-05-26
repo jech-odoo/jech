@@ -8,10 +8,12 @@ class ReturnPickingLine(models.TransientModel):
     _inherit = "stock.return.picking.line"
 
     # Field Declarations
-    order_description = fields.Text(string='Order Description', compute='_compute_order_description')
+    order_description = fields.Text(
+        string="Order Description", compute="_compute_order_description"
+    )
 
     # Compute methods
-    @api.depends('move_id.sale_line_id.name', 'move_id.purchase_line_id.name')
+    @api.depends("move_id.sale_line_id.name", "move_id.purchase_line_id.name")
     def _compute_order_description(self):
         """
         Inherited so that we can add value to order description from sale line
@@ -23,4 +25,4 @@ class ReturnPickingLine(models.TransientModel):
             elif line.move_id.purchase_line_id:
                 line.order_description = line.move_id.purchase_line_id.name
             else:
-                line.order_description = ''
+                line.order_description = ""

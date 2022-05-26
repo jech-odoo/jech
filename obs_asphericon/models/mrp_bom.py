@@ -5,7 +5,11 @@ from odoo import fields, models
 
 
 class MrpBom(models.Model):
-    _name = 'mrp.bom'
-    _inherit = ['mrp.bom','mail.thread','mail.activity.mixin']
-    analytic_account_id = fields.Many2one('account.analytic.account', 'Analytic Account', company_dependent=True,
-                                          help="Analytic account in which cost and revenue entries will take place for financial management of the manufacturing order.")
+    _name = "mrp.bom"
+    _inherit = ["mrp.bom", "mail.thread", "mail.activity.mixin"]
+    analytic_account_id = fields.Many2one(
+        "account.analytic.account",
+        "Analytic Account",
+        company_dependent=True,
+        help="Analytic account in which cost and revenue entries will take place for financial management of the manufacturing order.",
+    )

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
         <record id="product_template_form_view_obs_analytic" model="ir.ui.view">
@@ -9,8 +10,7 @@
                     <field name="analytic_id" groups="analytic.group_analytic_accounting"/>
                 </xpath>
                 <xpath expr="//div[@name='button_box']" position="inside">
-                    <button string="Project Overview" class="oe_stat_button" type="object" name="action_open_projects"
-                        icon="fa-puzzle-piece" attrs="{'invisible': [('project_count', '=', 0) ]}">
+                    <button string="Project Overview" class="oe_stat_button" type="object" name="action_open_projects" icon="fa-puzzle-piece" attrs="{'invisible': [('project_count', '=', 0) ]}">
                         <field name="project_count" invisible="1" />
                     </button>
                 </xpath>
@@ -32,6 +32,7 @@
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True, 'no_quick_create': True}" placeholder="Tags..."/>
                     <field name="is_asph_service_product" attrs="{'invisible': [('type', '!=', 'consu') ]}"/>
                 </xpath>
+
                 <!-- <xpath expr="//div[@name='pricing']" position="attributes">
                     <attribute name="attrs">{'invisible': [('ignore_sales_price', '=', True)]}</attribute>
                 </xpath>
@@ -64,10 +65,36 @@
             <field name="arch" type="xml">
                 <xpath expr="//page[@name='purchase']/group[1]" position="before">
                     <group>
-                       <field name="ignore_vendor_pricelists" />
+                        <field name="ignore_vendor_pricelists" />
                     </group>
                 </xpath>
             </field>
         </record>
+
+      <!--  view used for product.template only -->
+
+        <record id="product_template_only_form_view_inherit_obs" model="ir.ui.view">
+            <field name="name">product.template.only.form.view.obs</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[3]" position="after">
+                    <button string="Cretae RFQ" type="action" name="%(action_open_rfq_layout)d"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!--  view used for product.product only  -->
+        <record id="product_normal_form_view_inherit_obs" model="ir.ui.view">
+            <field name="name">product.normal.form.obs</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[3]" position="after">
+                    <button string="Cretae RFQ" type="action" name="%(action_open_rfq_layout)d"/>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>

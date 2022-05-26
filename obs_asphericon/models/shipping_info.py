@@ -4,7 +4,7 @@ from odoo import models, fields
 
 
 class ShippingInfo(models.Model):
-    _name = 'shipping.info'
+    _name = "shipping.info"
     _description = "Shipping Info"
 
     name = fields.Char(string="Name")

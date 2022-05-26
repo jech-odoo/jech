@@ -3,3 +3,4 @@ access_vendor_rating,access_vendor_rating,model_vendor_rating,base.group_user,1,
 access_project_template_wizard,access_project_template_wizard,model_project_template_wizard,base.group_user,1,1,1,1
 access_product_tags,access_product_tags,model_product_tags,base.group_user,1,1,1,1
 access_shipping_info,access_shipping_info,model_shipping_info,base.group_user,1,1,1,1
+access_product_temp,access_product_temp,model_product_temp,base.group_user,1,1,1,1
