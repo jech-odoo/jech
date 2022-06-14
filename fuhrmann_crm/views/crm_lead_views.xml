@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="crm_lead_form_inherit_fuhrmann_crm" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.fuhrmann.crm</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group/group[4]/field[@name='tag_ids']" position="attributes">
+                <attribute name="groups">base.user_admin</attribute>
+            </xpath>
+            <xpath expr="//sheet/group/group[6]/field[@name='tag_ids']" position="attributes">
+                <attribute name="groups">base.user_admin</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- List View  -->
+    <record id="crm_lead_form_inherit_fuhrmann_crm1" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.fuhrmann.crm1</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='stage_id']" position="after">
+                <field name="recurring_revenue_yearly" options="{'currency_field': 'company_currency'}"/>
+                <field name="recurring_revenue_annual_prorated" options="{'currency_field': 'company_currency'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
